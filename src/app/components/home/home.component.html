@@ -1,1 +1,38 @@
-<p>home works!</p>
+<div class="container d-flex justify-content-end my-5">
+    <!--<i class="bi bi-table mx-3" [class.d-none]="!cardView" (click)="setCardView(false)"></i>
+    <i class="bi bi-border-all" [class.d-none]="cardView" (click)="setCardView(true)"></i>-->
+    <i class="bi" [class.bi-table]="cardView"
+                  [class.bi-border-all]="!cardView"
+                  (click)="setCardView(!cardView)"></i>
+</div>
+
+<div *ngIf="cardView" class="container d-flex justify-content-between">
+
+    <ng-container *ngIf="libreria.length > 0;">
+        <ng-container *ngFor="let libro of libreria">
+            <app-bookcard [libro]="libro"></app-bookcard>
+        </ng-container>
+    </ng-container>
+    
+</div>
+
+<div *ngIf="!cardView " class="container">
+    <table class="table table-striped" *ngIf="libreria.length > 0;">
+        <thead>
+            <tr>
+                <th>Titolo</th>
+                <th>Autori</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let libro of libreria">
+                <td>{{libro.title}}</td>
+                <td>{{libro.authors.join(" - ")}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<ng-container *ngIf="libreria.length == 0;">
+    <p class="text-center">Nessun libro presente</p>
+</ng-container>
