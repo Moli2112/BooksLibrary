@@ -26,7 +26,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let libro of libreria">
-                <td>{{libro.title}}</td>
+                <td><a routerLink="libri/{{libro.id}}">{{libro.title}}</a></td>
                 <td>{{libro.authors.join(" - ")}}</td>
             </tr>
         </tbody>

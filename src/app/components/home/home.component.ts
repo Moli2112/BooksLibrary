@@ -3,10 +3,11 @@ import { BookService } from '../../services/book.service';
 import { Book } from '../../models/Book';
 import { CommonModule } from '@angular/common';
 import { BookcardComponent } from "../bookcard/bookcard.component";
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, BookcardComponent],
+  imports: [CommonModule, BookcardComponent, RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
