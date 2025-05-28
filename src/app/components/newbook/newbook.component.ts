@@ -42,7 +42,7 @@ export class NewbookComponent {
   Aggiungi(b:Book)
   {
       this.bookService.add(b).subscribe({
-      next: r => /*this.router.navigate([''])*/console.log(r),
+      next: r => alert("Libro aggiunto con successo"),
       error: e => alert("Errore")
     });
   }
