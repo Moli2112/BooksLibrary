@@ -46,4 +46,18 @@ export class BookService {
   {
 
   }
+
+  getAuthors():string[]
+  {
+    let authors:string[]=[];
+    this.library.forEach(l => authors=authors.concat(l.authors));
+    return authors;
+  }
+
+  getCategories():string[]
+  {
+    let categories:string[]=[];
+    this.library.forEach(l => categories=categories.concat(l.categories));
+    return categories;
+  }
 }

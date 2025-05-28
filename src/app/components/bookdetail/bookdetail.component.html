@@ -11,8 +11,7 @@
             <ng-container *ngFor="let i of [1,2,3,4,5]">
                 <i class="bi fs-4 mx-1"
                      [class.bi-star-fill]="i<=(libro?.stars ?? 0)"
-                     [class.bi-star]="i>(libro?.stars ?? 0)"
-                     [style.color]="i<=(libro?.stars ?? 0) ? '#ffc107' : '#ced4da'"></i>
+                     [class.bi-star]="i>(libro?.stars ?? 0)"></i>
             </ng-container>
         </div>
     </div>
