@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Book } from '../models/Book';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class BookService {
 
   getAll(filtroAutore:string, filtroCategorie:string):Observable<Book[]>
   {
-    var URL="https://bookslibrary-782617619332.europe-west1.run.app/libri";
+    var URL=environment.apiURL+"/libri";
 
     let filtri="";
     if(filtroAutore!="-" && filtroAutore!="") filtri+=`?author=${filtroAutore}`;
@@ -44,8 +45,7 @@ export class BookService {
 
   getOne(id:number):Observable<Book>
   {
-    var URL=`https://bookslibrary-782617619332.europe-west1.run.app/libri/${id}`;
-    return this.http.get<Book>(URL);
+    return this.http.get<Book>(environment.apiURL+`/libri/${id}`);
   }
 
   delete(id:number):void
@@ -65,11 +65,11 @@ export class BookService {
 
   getAuthors():Observable<string[]>
   {
-    return this.http.get<string[]>("https://bookslibrary-782617619332.europe-west1.run.app/autori");
+    return this.http.get<string[]>(environment.apiURL+"/autori");
   }
 
   getCategories():Observable<string[]>
   {
-    return this.http.get<string[]>("https://bookslibrary-782617619332.europe-west1.run.app/generi");
+    return this.http.get<string[]>(environment.apiURL+"/generi");
   }
 }
