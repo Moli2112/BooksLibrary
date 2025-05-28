@@ -48,9 +48,9 @@ export class BookService {
     return this.http.get<Book>(environment.apiURL+`/libri/${id}`);
   }
 
-  delete(id:number):void
+  delete(id:number)
   {
-
+    return this.http.delete(environment.apiURL+`/libri/${id}`);
   }
 
   add(b:Book):void
