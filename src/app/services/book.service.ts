@@ -58,9 +58,9 @@ export class BookService {
 
   }
 
-  update(b:Book):void
+  update(b:Book)
   {
-
+    return this.http.put<Book>(environment.apiURL+`/libri/${b.id}`,b);
   }
 
   getAuthors():Observable<string[]>
@@ -71,5 +71,10 @@ export class BookService {
   getCategories():Observable<string[]>
   {
     return this.http.get<string[]>(environment.apiURL+"/generi");
+  }
+
+  getReadingStates():Observable<string[]>
+  {
+    return this.http.get<string[]>(environment.apiURL+"/statilettura");
   }
 }

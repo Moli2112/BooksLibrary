@@ -5,9 +5,12 @@
             <ng-container *ngFor="let i of [1,2,3,4,5]">
                 <i class="bi fs-4 mx-1"
                      [class.bi-star-fill]="i<=(libro.stars ?? 0)"
-                     [class.bi-star]="i>(libro.stars ?? 0)"></i>
+                     [class.bi-star]="i>(libro.stars ?? 0)" (click)="libro.stars=i;updateBook()"></i>
             </ng-container>
         </div>
+        <select [(ngModel)]="libro.readingState" (change)="updateBook()">
+            <option *ngFor="let stato of statiLettura" value="{{stato}}">{{stato}}</option>
+        </select>
     </div>
     <div class="w-75 ps-5 d-flex flex-column justify-content-center">
         <h2 class="fw-bold mb-3 text-primary text-center">{{libro.title}}</h2>
