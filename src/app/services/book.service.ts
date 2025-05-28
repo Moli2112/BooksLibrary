@@ -53,9 +53,9 @@ export class BookService {
     return this.http.delete(environment.apiURL+`/libri/${id}`);
   }
 
-  add(b:Book):void
+  add(b:Book)
   {
-
+    return this.http.post(environment.apiURL+`/libri/`,b);
   }
 
   update(b:Book)
@@ -76,5 +76,10 @@ export class BookService {
   getReadingStates():Observable<string[]>
   {
     return this.http.get<string[]>(environment.apiURL+"/statilettura");
+  }
+
+  getGoogleBooks(isbn:string)
+  {
+    return this.http.get(environment.googleBooksAPIURL+isbn);
   }
 }

@@ -24,10 +24,10 @@ export class BookdetailComponent
     bookService.getReadingStates().subscribe(r => this.statiLettura=r);
 
     bookService.getOne(+this.route.snapshot.params['id']).subscribe({
-      next: r => this.libro=r,
+      next: r => {r.image=r.image?.replace("http","https"), this.libro=r},
       error: e => alert("Errore")
     });
-    
+    //this.libro.image?.replace("http","https");
   }
 
   deleteBook()

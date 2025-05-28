@@ -1,0 +1,40 @@
+<div class="container my-5">
+    <h1 class="mb-4 text-primary">Aggiungi Nuovi Libri</h1>
+
+    <div class="input-group mb-4">
+        <span class="input-group-text" id="isbn-label">ISBN</span>
+        <input type="text" id="isbn" class="form-control" placeholder="Inserisci ISBN" [(ngModel)]="isbn" aria-describedby="isbn-label">
+        <button class="btn btn-primary" (click)="cerca()">Cerca Libri</button>
+    </div>
+
+    <div *ngIf="libri.length > 0;" class="table-responsive">
+        <table class="table table-hover table-striped align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Immagine</th>
+                    <th>Titolo</th>
+                    <th>Autori</th>
+                    <th>Descrizione</th>
+                    <th>Aggiungi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let libro of libri">
+                    <td style="max-width: 80px;"><img src="{{libro.image}}" class="img-fluid rounded" alt="Copertina libro"></td>
+                    <td>{{libro.title}}</td>
+                    <td>{{libro.authors.join(' - ')}}</td>
+                    <td class="text-truncate" style="max-width: 300px;">{{libro.description}}</td>
+                    <td>
+                        <button class="btn btn-outline-success btn-sm" (click)="Aggiungi(libro)">
+                            <i class="bi bi-plus-circle"></i> Aggiungi
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="libri.length === 0" class="text-center text-muted mt-4">
+        <p>Nessun libro presente</p>
+    </div>
+</div>
