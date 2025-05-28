@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Book } from '../models/Book';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
 
   private library:Book[] = [
@@ -22,14 +24,28 @@ export class BookService {
     }
   ];
 
-  getAll():Book[]
+  getAll(filtroAutore:string, filtroCategorie:string):Observable<Book[]>
   {
-    return this.library;
+    var URL="https://bookslibrary-782617619332.europe-west1.run.app/libri";
+
+    let filtri="";
+    if(filtroAutore!="-" && filtroAutore!="") filtri+=`?author=${filtroAutore}`;
+
+    if(filtroCategorie!="-" && filtroCategorie!="") 
+    {
+      if(filtri!="") filtri+="&";
+      filtri+=`?category=${filtroCategorie}`;
+    }
+
+    if(filtri!="") URL+=filtri;
+
+    return this.http.get<Book[]>(URL);
   }
 
-  getOne(id:number):Book | undefined
+  getOne(id:number):Observable<Book>
   {
-    return this.library.find(b => b.id == id);
+    var URL=`https://bookslibrary-782617619332.europe-west1.run.app/libri/${id}`;
+    return this.http.get<Book>(URL);
   }
 
   delete(id:number):void
@@ -47,17 +63,13 @@ export class BookService {
 
   }
 
-  getAuthors():string[]
+  getAuthors():Observable<string[]>
   {
-    let authors:string[]=[];
-    this.library.forEach(l => authors=authors.concat(l.authors));
-    return authors;
+    return this.http.get<string[]>("https://bookslibrary-782617619332.europe-west1.run.app/autori");
   }
 
-  getCategories():string[]
+  getCategories():Observable<string[]>
   {
-    let categories:string[]=[];
-    this.library.forEach(l => categories=categories.concat(l.categories));
-    return categories;
+    return this.http.get<string[]>("https://bookslibrary-782617619332.europe-west1.run.app/generi");
   }
 }

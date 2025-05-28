@@ -13,10 +13,13 @@ import { CommonModule } from '@angular/common';
   styleUrl: './bookdetail.component.css'
 })
 export class BookdetailComponent {
-  libro:Book|undefined;
+  libro!:Book;
 
   constructor(private route:ActivatedRoute, private bookService: BookService)
   {
-    this.libro=bookService.getOne(this.route.snapshot.params['id']);
+    bookService.getOne(+this.route.snapshot.params['id']).subscribe({
+      next: r => this.libro=r,
+      error: e => alert("Errore")
+    });
   }
 }
