@@ -18,7 +18,7 @@ export class NewbookComponent {
 
   cerca()
   {
-    this.bookService.getGoogleBooks(this.isbn).subscribe(r => {
+    /*this.bookService.getGoogleBooks(this.isbn).subscribe(r => {
       this.libri=[];
       let json:any=r;
       for(let i=0;i<json.totalItems;i++)
@@ -36,7 +36,12 @@ export class NewbookComponent {
           readingState:"Da Leggere"
         });
       }
-    });
+    });*/
+    this.bookService.getGoogleBooks(this.isbn).subscribe(
+      {
+        next: r => this.libri=r,
+        error: e => this.libri=[]
+      });
   }
 
   Aggiungi(b:Book)
