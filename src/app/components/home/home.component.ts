@@ -35,7 +35,15 @@ export class HomeComponent {
 
   loadData()
   {
-    this.bookService.getAll(this.filtroAutore,this.filtroCategorie).subscribe(r => {r.forEach(b => b.image=b.image?.replace("http","https")); this.libreria=r})
+    this.bookService.getAll(this.filtroAutore,this.filtroCategorie).subscribe(r => {
+      r.forEach(b => {
+        if(!b.image?.includes("https"))
+          {
+            b.image=b.image?.replace("http","https");
+          }
+      }); 
+      this.libreria=r
+    });
 
                   //.filter( b => (this.filtroAutore=="-" || b.authors.includes(this.filtroAutore)) 
                   //&& (this.filtroCategorie=="-" || b.categories.includes(this.filtroCategorie)));

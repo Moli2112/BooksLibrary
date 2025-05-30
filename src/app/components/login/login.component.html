@@ -1,0 +1,20 @@
+<div class="container mt-5" style="max-width: 400px;">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h5 class="card-title text-center mb-4">Login</h5>
+      <form>
+        <div class="mb-3">
+          <label for="userName" class="form-label">Username</label>
+          <input type="text" id="userName" [(ngModel)]="userName" name="userName" class="form-control" placeholder="Inserisci il tuo username"/>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" id="password" [(ngModel)]="password" name="password" class="form-control" placeholder="Inserisci la tua password"/>
+        </div>
+        <div class="d-grid">
+          <button type="button" class="btn btn-primary" (click)="Login()">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

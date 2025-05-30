@@ -24,7 +24,13 @@ export class BookdetailComponent
     bookService.getReadingStates().subscribe(r => this.statiLettura=r);
 
     bookService.getOne(+this.route.snapshot.params['id']).subscribe({
-      next: r => {r.image=r.image?.replace("http","https"), this.libro=r},
+      next: r => {
+        if(!r.image?.includes("https"))
+        {
+           r.image=r.image?.replace("http","https");
+        }
+        this.libro=r
+      },
       error: e => alert("Errore")
     });
     //this.libro.image?.replace("http","https");
