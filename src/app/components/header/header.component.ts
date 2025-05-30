@@ -10,7 +10,11 @@ import { AuthService } from '../../services/auth.service';
 })
 export class HeaderComponent {
 
-  constructor(private authService:AuthService, private router:Router) {}
+  nome:string;
+
+  constructor(private authService:AuthService, private router:Router) {
+    this.nome=authService.getNameFromToken();
+  }
 
   Logout()
   {
